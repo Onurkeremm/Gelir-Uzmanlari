@@ -13,7 +13,7 @@
   {
     "id": "cd4951ae-0f60-4769-96c6-c9eac84def64",
     "baslik": "Hizmet2",
-    "aciklama": "<p>ALKSJDJKSABHDBHSAJBDHKJSAD</p>",
+    "aciklama": "<p><br></p>",
     "ikon": "",
     "link": "",
     "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBuTA-qsCfOqvKk4TaEtplL-nORPO_F4RD8A&s",
@@ -21,7 +21,7 @@
     "aktif": true,
     "ekleyenKullaniciId": 2,
     "ekleyenKullaniciAdi": "Onur Kerem",
-    "view_count": 1
+    "view_count": 2
   },
   {
     "id": "651b8999-6045-4e99-b745-59d659944370",

@@ -7,7 +7,8 @@
     "butonYazisi": "Örnek",
     "butonLink": "https://gelir-uzmanlari.onrender.com/haber/6169ba29-fb7a-49b9-adbb-6b2e9c23765e",
     "sira": 1,
-    "aktif": true
+    "aktif": true,
+    "view_count": 1
   },
   {
     "id": "f2a0d0da-c6c3-45d3-9bd3-4d533dfb4240",
@@ -18,6 +19,6 @@
     "butonLink": "https://gelir-uzmanlari.onrender.com/haber/6169ba29-fb7a-49b9-adbb-6b2e9c23765e",
     "sira": 0,
     "aktif": true,
-    "view_count": 1
+    "view_count": 3
   }
 ]
