@@ -1,0 +1,170 @@
+[
+  {
+    "time": "2026-03-08T03:01:23.214Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "details": {
+      "title": "2024 KPSS Lisans Sınavı Sonuçları Açıklandı"
+    }
+  },
+  {
+    "time": "2026-03-08T03:01:23.842Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "details": {
+      "title": "ALES Bahar Dönemi Başvuru Tarihleri Duyuruldu"
+    }
+  },
+  {
+    "time": "2026-03-08T03:01:24.510Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+    "details": {
+      "title": "Merkezi Atama ile Öğretmen Atamaları Yapıldı"
+    }
+  },
+  {
+    "time": "2026-03-08T03:01:25.477Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "d4e5f6a7-b8c9-0123-def0-234567890123",
+    "details": {
+      "title": "Kamu Personeli Seçme Sınavı Yönetmeliği Güncellendi"
+    }
+  },
+  {
+    "time": "2026-03-08T03:01:26.678Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "d4e5f6a7-b8c9-0123-def0-234567890123",
+    "details": {
+      "title": "Kamu Personeli Seçme Sınavı Yönetmeliği Güncellendi"
+    }
+  },
+  {
+    "time": "2026-03-08T03:01:27.450Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "d4e5f6a7-b8c9-0123-def0-234567890123",
+    "details": {
+      "title": "Kamu Personeli Seçme Sınavı Yönetmeliği Güncellendi"
+    }
+  },
+  {
+    "time": "2026-03-08T03:01:30.691Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "e5f6a7b8-c9d0-1234-ef01-345678901234",
+    "details": {
+      "title": "KPSS Ön Lisans ve Ortaöğretim Sınav Takvimi"
+    }
+  },
+  {
+    "time": "2026-03-08T03:01:35.482Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_update",
+    "targetType": "haber",
+    "targetId": "f6a7b8c9-d0e1-2345-f012-456789012345",
+    "details": {
+      "title": "Yükseköğretim Kurumları Sınavı (YKS) Mevzuat Değişikliği"
+    }
+  },
+  {
+    "time": "2026-03-08T03:34:26.727Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_delete",
+    "targetType": "haber",
+    "targetId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "details": {
+      "title": "2024 KPSS Lisans Sınavı Sonuçları Açıklandı"
+    }
+  },
+  {
+    "time": "2026-03-08T03:34:27.705Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_delete",
+    "targetType": "haber",
+    "targetId": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "details": {
+      "title": "ALES Bahar Dönemi Başvuru Tarihleri Duyuruldu"
+    }
+  },
+  {
+    "time": "2026-03-08T03:34:28.269Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_delete",
+    "targetType": "haber",
+    "targetId": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+    "details": {
+      "title": "Merkezi Atama ile Öğretmen Atamaları Yapıldı"
+    }
+  },
+  {
+    "time": "2026-03-08T03:34:28.795Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_delete",
+    "targetType": "haber",
+    "targetId": "d4e5f6a7-b8c9-0123-def0-234567890123",
+    "details": {
+      "title": "Kamu Personeli Seçme Sınavı Yönetmeliği Güncellendi"
+    }
+  },
+  {
+    "time": "2026-03-08T03:34:29.402Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_delete",
+    "targetType": "haber",
+    "targetId": "e5f6a7b8-c9d0-1234-ef01-345678901234",
+    "details": {
+      "title": "KPSS Ön Lisans ve Ortaöğretim Sınav Takvimi"
+    }
+  },
+  {
+    "time": "2026-03-08T03:34:29.937Z",
+    "ip": "::1",
+    "userId": 1,
+    "username": "admin",
+    "action": "content_delete",
+    "targetType": "haber",
+    "targetId": "f6a7b8c9-d0e1-2345-f012-456789012345",
+    "details": {
+      "title": "Yükseköğretim Kurumları Sınavı (YKS) Mevzuat Değişikliği"
+    }
+  }
+]

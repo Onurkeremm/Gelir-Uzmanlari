@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hizmet - Gelir Uzmanları</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], heading: ['Poppins', 'Inter', 'sans-serif'] },
+          colors: { primary: '#0A1929', 'primary-light': '#1A2B4C', accent: '#0066CC' },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --color-primary: #0A1929;
+      --color-accent: #0066CC;
+      --color-heading: #1E293B;
+      --color-text: #475569;
+      --color-bg: #f8faff;
+      --radius: 10px;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: var(--color-text); }
+    .font-heading { font-family: 'Poppins', 'Inter', sans-serif; }
+    .hizmet-prose p { margin-bottom: 1rem; }
+    .hizmet-prose a { color: var(--color-accent); text-decoration: underline; }
+  </style>
+</head>
+<body class="bg-[#f8faff] min-h-screen antialiased">
+  <header class="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="font-heading font-bold text-xl text-[var(--color-primary)]">Gelir Uzmanları</a>
+      <a href="/hizmetler" class="text-sm font-medium text-[var(--color-accent)] hover:underline">← Hizmetlere Dön</a>
+    </div>
+  </header>
+
+  <main id="hizmet-main" class="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+    <div id="loading" class="flex justify-center py-20">
+      <div class="animate-pulse flex flex-col items-center gap-3">
+        <div class="w-10 h-10 border-2 border-gray-300 border-t-[var(--color-accent)] rounded-full animate-spin"></div>
+        <span class="text-sm text-[var(--color-text)]">Yükleniyor...</span>
+      </div>
+    </div>
+    <article id="hizmet-article" class="hidden bg-white rounded-[var(--radius)] shadow-sm border border-gray-100 overflow-hidden">
+      <div id="hizmet-image-wrap" class="hidden w-full bg-gray-100 overflow-hidden">
+        <img id="hizmet-image" src="" alt="" class="w-full max-h-80 object-cover" />
+      </div>
+      <div class="p-6 sm:p-8">
+        <div id="hizmet-ikon-wrap" class="mb-3"></div>
+        <h1 id="hizmet-title" class="font-heading font-bold text-2xl sm:text-3xl text-[var(--color-heading)] leading-tight mb-4"></h1>
+        <div id="hizmet-content" class="hizmet-prose prose-slate max-w-none text-[var(--color-text)]" style="line-height: 1.7;"></div>
+        <a id="hizmet-link-btn" href="#" target="_blank" rel="noopener" class="hidden mt-6 inline-flex items-center px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white text-sm font-medium hover:opacity-90 transition-opacity">İlgili bağlantı →</a>
+      </div>
+    </article>
+    <div id="hizmet-error" class="hidden text-center py-16">
+      <p class="text-red-600 font-medium">Hizmet bulunamadı.</p>
+      <a href="/hizmetler" class="inline-block mt-4 text-[var(--color-accent)] hover:underline">Hizmetlere Dön</a>
+    </div>
+  </main>
+
+  <footer class="mt-12 py-6 border-t border-gray-200 bg-white">
+    <div class="max-w-4xl mx-auto px-4 text-center text-sm text-[var(--color-text)]">
+      © 2026 Gelir Uzmanları
+    </div>
+  </footer>
+
+  <script src="/hizmet-detay.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Çok Okunanlar - Gelir Uzmanları</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], heading: ['Poppins', 'Inter', 'sans-serif'] },
+          colors: { primary: '#0A1929', accent: '#0066CC' },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --color-primary: #0A1929;
+      --color-accent: #0066CC;
+      --color-heading: #1E293B;
+      --color-text: #475569;
+      --color-bg: #f8faff;
+      --radius: 10px;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: var(--color-text); }
+    .font-heading { font-family: 'Poppins', 'Inter', sans-serif; }
+    .header-scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .nav-link.active { color: var(--color-accent); border-bottom: 2px solid var(--color-accent); }
+    .btn-primary { background: var(--color-primary); color: #fff; }
+    .trend-item { transition: background 0.2s; }
+    .trend-item:hover { background: #f1f5f9; }
+  </style>
+</head>
+<body class="bg-[#f8faff] min-h-screen antialiased">
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <a href="/" class="font-heading font-bold text-xl text-[var(--color-primary)]">Gelir Uzmanları</a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="/" class="nav-link text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-transparent">Ana Sayfa</a>
+        <a href="/haberler" class="nav-link text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-transparent">Haberler</a>
+        <a href="/hizmetler" class="nav-link text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-transparent">Hizmetler</a>
+        <a href="/cok-okunanlar" class="nav-link active text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-[var(--color-accent)]">Çok Okunanlar</a>
+      </nav>
+      <a href="/iletisim" class="hidden md:inline-flex items-center px-4 py-2 rounded-lg btn-primary text-sm font-medium transition-colors">İletişim</a>
+      <button id="menu-toggle" type="button" class="md:hidden p-2 rounded-lg text-[var(--color-primary)]" aria-label="Menü">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur mt-2 py-3 px-4 rounded-b-xl shadow-lg">
+      <a href="/" class="block py-2 text-[var(--color-text)] font-medium">Ana Sayfa</a>
+      <a href="/haberler" class="block py-2 text-[var(--color-text)] font-medium">Haberler</a>
+      <a href="/hizmetler" class="block py-2 text-[var(--color-text)] font-medium">Hizmetler</a>
+      <a href="/cok-okunanlar" class="block py-2 text-[var(--color-accent)] font-medium">Çok Okunanlar</a>
+      <a href="/iletisim" class="block py-2 text-[var(--color-text)] font-medium">İletişim</a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-12">
+    <h1 class="font-heading font-bold text-3xl text-[var(--color-heading)] mb-2">Çok Okunanlar</h1>
+    <p class="text-[var(--color-text)] mb-8">En çok görüntülenen haber ve duyurular</p>
+    <div class="bg-white rounded-[var(--radius)] shadow-sm border border-gray-100 overflow-hidden">
+      <ul id="trending-list" class="divide-y divide-gray-100">
+        <li class="px-6 py-4 text-[var(--color-text)]">Yükleniyor...</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="mt-16 bg-[var(--color-primary)] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm opacity-90">
+        <span>© 2026 Gelir Uzmanları</span>
+        <div class="flex gap-6">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/haberler" class="hover:underline">Haberler</a>
+          <a href="/hizmetler" class="hover:underline">Hizmetler</a>
+          <a href="/cok-okunanlar" class="hover:underline">Çok Okunanlar</a>
+          <a href="/iletisim" class="hover:underline">İletişim</a>
+          <a href="/admin" class="hover:underline">Yönetim Paneli</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/cok-okunanlar.js"></script>
+  <script>
+    (function () {
+      var header = document.getElementById('header');
+      var menuToggle = document.getElementById('menu-toggle');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (window.scrollY > 20) header.classList.add('header-scrolled', 'shadow-sm');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 20) header.classList.add('header-scrolled', 'shadow-sm');
+        else header.classList.remove('header-scrolled', 'shadow-sm');
+      });
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function () { mobileMenu.classList.toggle('hidden'); });
+      }
+    })();
+  </script>
+</body>
+</html>

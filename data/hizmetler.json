@@ -1,0 +1,41 @@
+[
+  {
+    "id": "205479dc-04bb-4b9c-8a06-be4ac29337c2",
+    "baslik": "Hizmet",
+    "aciklama": "<p>Hizmetlerimiz mükemmeldir. aksjdnajlksndjkdasnlkjsadsa</p>",
+    "ikon": "icon",
+    "link": "",
+    "sira": 0,
+    "aktif": true,
+    "gorsel": "/uploads/8a6c682f-19ba-40db-8d1d-be2f8bd94a7e.png",
+    "view_count": 1
+  },
+  {
+    "id": "cd4951ae-0f60-4769-96c6-c9eac84def64",
+    "baslik": "Hizmet2",
+    "aciklama": "<p>ALKSJDJKSABHDBHSAJBDHKJSAD</p>",
+    "ikon": "",
+    "link": "",
+    "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBuTA-qsCfOqvKk4TaEtplL-nORPO_F4RD8A&s",
+    "sira": 0,
+    "aktif": true,
+    "ekleyenKullaniciId": 2,
+    "ekleyenKullaniciAdi": "Onur Kerem",
+    "view_count": 1
+  },
+  {
+    "id": "651b8999-6045-4e99-b745-59d659944370",
+    "baslik": "Hizmet3",
+    "aciklama": "<p><br></p>",
+    "ikon": "",
+    "link": "",
+    "gorsel": "",
+    "sira": 0,
+    "aktif": true,
+    "ekleyenKullaniciId": 1,
+    "ekleyenKullaniciAdi": "admin",
+    "ekleyenKullaniciRol": "admin",
+    "created_at": "2026-03-08T02:48:24.285Z",
+    "view_count": 3
+  }
+]

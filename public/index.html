@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base id="base-tag" href="/" />
+  <script>
+    (function(){ var p = window.location.pathname; p = p.replace(/\/index\.html$/i,'').replace(/\/?$/,''); window.BASE_PATH = p || ''; var el = document.getElementById('base-tag'); if(el) el.href = window.location.origin + (window.BASE_PATH ? window.BASE_PATH + '/' : '/'); })();
+  </script>
+  <title>Gelir Uzmanları</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Poppins', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: '#0A1929',
+            'primary-light': '#1A2B4C',
+            accent: '#0066CC',
+            'accent-hover': '#0052A3',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --color-primary: #0A1929;
+      --color-primary-light: #1A2B4C;
+      --color-accent: #0066CC;
+      --color-accent-hover: #0052A3;
+      --color-heading: #1E293B;
+      --color-text: #475569;
+      --color-bg: #f8faff;
+      --radius: 10px;
+      --shadow: 0 1px 3px rgba(10, 25, 41, 0.06);
+      --shadow-hover: 0 4px 12px rgba(10, 25, 41, 0.08);
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; color: var(--color-text); }
+    .font-heading { font-family: 'Poppins', 'Inter', sans-serif; }
+    .album-card { height: 380px; display: flex; flex-direction: column; border-radius: var(--radius); border: 1px solid rgba(10, 25, 41, 0.06); }
+    .album-card .card-image-wrap { flex: 0 0 60%; min-height: 0; }
+    .album-card .card-body-wrap { flex: 0 0 40%; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem; }
+    .album-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+    .header-scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .nav-link.active { color: var(--color-accent); border-bottom: 2px solid var(--color-accent); }
+    .btn-primary { background: var(--color-primary); color: #fff; }
+    .btn-primary:hover { background: var(--color-primary-light); }
+    .btn-outline { border: 2px solid var(--color-primary); color: var(--color-primary); }
+    .btn-outline:hover { background: var(--color-primary); color: #fff; }
+    .hero-pattern { background: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(0, 102, 204, 0.06) 0%, transparent 50%); }
+    .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .stagger-1 { animation-delay: 0.1s; } .stagger-2 { animation-delay: 0.2s; } .stagger-3 { animation-delay: 0.3s; }
+  </style>
+</head>
+<body class="bg-[#f8faff] min-h-screen antialiased">
+  <!-- Header: şeffaf, scroll'da blurlu -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <a href="./" class="font-heading font-bold text-xl text-[var(--color-primary)]">Gelir Uzmanları</a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="./" class="nav-link active text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-transparent">Ana Sayfa</a>
+        <a href="haberler" class="nav-link text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-transparent">Haberler</a>
+        <a href="hizmetler" class="nav-link text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-transparent">Hizmetler</a>
+        <a href="cok-okunanlar" class="nav-link text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors pb-1 border-b-2 border-transparent">Çok Okunanlar</a>
+      </nav>
+      <a href="iletisim" class="hidden md:inline-flex items-center px-4 py-2 rounded-lg btn-primary text-sm font-medium transition-colors">İletişim</a>
+      <button id="menu-toggle" type="button" class="md:hidden p-2 rounded-lg text-[var(--color-primary)]" aria-label="Menü">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur mt-2 py-3 px-4 rounded-b-xl shadow-lg">
+      <a href="./" class="block py-2 text-[var(--color-text)] font-medium">Ana Sayfa</a>
+      <a href="haberler" class="block py-2 text-[var(--color-text)] font-medium">Haberler</a>
+      <a href="hizmetler" class="block py-2 text-[var(--color-text)] font-medium">Hizmetler</a>
+      <a href="cok-okunanlar" class="block py-2 text-[var(--color-text)] font-medium">Çok Okunanlar</a>
+      <a href="iletisim" class="block py-2 text-[var(--color-accent)] font-medium">İletişim</a>
+    </div>
+  </header>
+
+  <!-- Slider (CMS - varsa gösterilir) -->
+  <div id="slider-section" class="hidden"></div>
+
+  <!-- Hero -->
+  <section class="hero-pattern pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="font-heading font-bold text-4xl sm:text-5xl text-[var(--color-heading)] tracking-tight max-w-3xl mx-auto leading-tight">
+        Resmi Duyurular ve Güncel Haberler
+      </h1>
+      <p class="mt-4 text-lg sm:text-xl text-[var(--color-text)] max-w-2xl mx-auto" style="line-height: 1.6;">
+        KPSS, ALES, atamalar ve mevzuat haberlerine tek adresten ulaşın.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="haberler" class="btn-primary px-6 py-3 rounded-lg font-medium transition-colors inline-flex">Haberleri Görüntüle</a>
+        <a href="hizmetler" class="btn-outline px-6 py-3 rounded-lg font-medium transition-colors inline-flex">Hizmetler</a>
+        <a href="cok-okunanlar" class="btn-outline px-6 py-3 rounded-lg font-medium transition-colors inline-flex">Çok Okunanlar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hizmetler (CMS - varsa gösterilir) -->
+  <section id="hizmetler-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="font-heading font-semibold text-2xl text-[var(--color-heading)] mb-6">Hizmetlerimiz</h2>
+    <div id="hizmetler-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- Referanslar (CMS - varsa gösterilir) -->
+  <section id="referanslar-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white border-y border-gray-100">
+    <h2 class="font-heading font-semibold text-2xl text-[var(--color-heading)] mb-6">Referanslar</h2>
+    <div id="referanslar-grid" class="flex flex-wrap gap-8 items-center justify-center"></div>
+  </section>
+
+  <!-- Main content -->
+  <main id="haberler" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-24">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <section class="w-full lg:w-3/4">
+        <h2 class="font-heading font-semibold text-2xl text-[var(--color-heading)] mb-6">Güncel Haberler</h2>
+        <div id="albums-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div id="loading-cards" class="col-span-full flex justify-center py-16">
+            <div class="animate-pulse flex flex-col items-center gap-3">
+              <div class="w-10 h-10 border-2 border-gray-300 border-t-[var(--color-accent)] rounded-full animate-spin"></div>
+              <span class="text-sm text-[var(--color-text)]">Yükleniyor...</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside id="cok-okunanlar" class="w-full lg:w-1/4 flex-shrink-0 scroll-mt-24">
+        <div class="bg-white rounded-[var(--radius)] shadow-[var(--shadow)] border border-gray-100 overflow-hidden sticky top-28">
+          <div class="px-5 py-4 border-b border-gray-100" style="background: #f8faff;">
+            <h3 class="font-heading font-semibold text-lg text-[var(--color-heading)]">Çok Okunanlar</h3>
+            <p class="text-sm text-[var(--color-text)] mt-0.5">En çok görüntülenen içerikler</p>
+          </div>
+          <ul id="trending-list" class="divide-y divide-gray-100">
+            <li class="px-5 py-3 text-sm text-[var(--color-text)]">Yükleniyor...</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="iletisim" class="mt-16 bg-[var(--color-primary)] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div>
+          <h4 class="font-heading font-semibold text-lg mb-3">Gelir Uzmanları</h4>
+          <p class="text-sm opacity-90" style="line-height: 1.6;">Resmi duyurular ve güncel haberler için güvenilir kaynak.</p>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-lg mb-3">Hızlı Linkler</h4>
+          <ul class="space-y-2 text-sm opacity-90">
+            <li><a href="./" class="hover:underline">Ana Sayfa</a></li>
+            <li><a href="haberler" class="hover:underline">Haberler</a></li>
+            <li><a href="hizmetler" class="hover:underline">Hizmetler</a></li>
+            <li><a href="cok-okunanlar" class="hover:underline">Çok Okunanlar</a></li>
+            <li><a href="iletisim" class="hover:underline">İletişim</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-lg mb-3">İletişim</h4>
+          <p id="footer-adres" class="text-sm opacity-90"></p>
+          <p id="footer-telefon" class="text-sm opacity-90 mt-1"></p>
+          <p id="footer-email" class="text-sm opacity-90 mt-1"></p>
+          <div id="footer-social" class="flex gap-3 mt-3"></div>
+        </div>
+      </div>
+      <div class="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm opacity-80">
+        <span>© 2026 Gelir Uzmanları</span>
+        <div class="flex gap-6">
+          <a href="admin" class="hover:underline">Yönetim Paneli</a>
+          <a href="#" class="hover:underline">Gizlilik</a>
+          <a href="#" class="hover:underline">Kullanım Koşulları</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      var header = document.getElementById('header');
+      var menuToggle = document.getElementById('menu-toggle');
+      var mobileMenu = document.getElementById('mobile-menu');
+      function updateHeader() {
+        if (window.scrollY > 20) header.classList.add('header-scrolled', 'shadow-sm');
+        else header.classList.remove('header-scrolled', 'shadow-sm');
+      }
+      window.addEventListener('scroll', updateHeader);
+      updateHeader();
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
