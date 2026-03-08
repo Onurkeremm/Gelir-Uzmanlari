@@ -127,7 +127,7 @@
   }
 
   function loadSlider() {
-    fetch(BASE + '/api/slider')
+    fetch(BASE + '/api/slider', { cache: 'no-store' })
       .then(function (r) { return safeJson(r); })
       .then(function (list) {
         if (!list || list.length === 0) return;

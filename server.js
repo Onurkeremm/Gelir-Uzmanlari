@@ -361,6 +361,7 @@ app.get('/api/slider', async (req, res) => {
     let list = await readJson(DATA_FILES.slider);
     if (!Array.isArray(list)) list = [];
     const active = list.filter((x) => x.aktif !== false).sort((a, b) => (a.sira || 0) - (b.sira || 0));
+    res.setHeader('Cache-Control', 'no-store');
     res.json(active);
   } catch (err) {
     console.error(err);
