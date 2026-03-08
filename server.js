@@ -1314,6 +1314,7 @@ app.get('/iletisim', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
 });
 
