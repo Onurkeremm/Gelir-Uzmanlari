@@ -1,22 +1,23 @@
 [
   {
     "id": "815c447e-6eeb-4120-abc6-381c9b054ea0",
-    "resim": "/uploads/c32539c6-9d07-44e5-9c46-8ae87744d209.png",
+    "resim": "https://logo-icons.com/cdn/shop/files/291-logo-1711991296.916.svg?v=1712759714&width=533",
     "baslik": "ÖRNEK",
     "altBaslik": "“Sorumluluk Var, Karşılığı Yok”   Devlet Memurları Sendikası (DMS) Maliye Şubesi, uzun süredir gündemde olan yapısal sorunlara ilişkin kapsamlı bir düzenleme paketi talebini kamuoyuna duyurdu.  Sendika, özellikle taşrada görev yapan muhasebe ve gelir uzmanlarının taşıdığı yüksek mali sorumluluğa rağmen özlük haklarının aynı oranda güçlendirilmediğini belirterek, “Görevin riskiyle orantılı bir özlük düzenlemesi şart” mesajını verdi.",
     "butonYazisi": "Örnek",
-    "butonLink": "https://www.youtube.com",
+    "butonLink": "https://gelir-uzmanlari.onrender.com/haber/6169ba29-fb7a-49b9-adbb-6b2e9c23765e",
     "sira": 1,
     "aktif": true
   },
   {
     "id": "f2a0d0da-c6c3-45d3-9bd3-4d533dfb4240",
-    "resim": "/uploads/c32539c6-9d07-44e5-9c46-8ae87744d209.png",
+    "resim": "https://logo-icons.com/cdn/shop/files/291-logo-1711991296.916.svg?v=1712759714&width=533",
     "baslik": "MUHASEBE VE GELİR UZMANLARINDAN REFORM ÇAĞRISI",
     "altBaslik": "“Sorumluluk Var, Karşılığı Yok”",
-    "butonYazisi": "asadas",
-    "butonLink": "https://www.youtube.com",
+    "butonYazisi": "Örnek2",
+    "butonLink": "https://gelir-uzmanlari.onrender.com/haber/6169ba29-fb7a-49b9-adbb-6b2e9c23765e",
     "sira": 0,
-    "aktif": true
+    "aktif": true,
+    "view_count": 1
   }
 ]
