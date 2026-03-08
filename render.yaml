@@ -1,0 +1,12 @@
+# Render Web Service - Bu proje Node.js backend + statik frontend içerir.
+# "Static Site" DEĞİL, "Web Service" olarak deploy edin; yoksa /api/* 404 verir.
+
+services:
+  - type: web
+    name: gelir-uzmanlari
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production

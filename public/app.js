@@ -12,7 +12,10 @@
     var ct = (res.headers.get('Content-Type') || '').toLowerCase();
     if (ct.indexOf('application/json') === -1) {
       return res.text().then(function () {
-        throw new Error('API yanıtı alınamadı. Sunucuyu "npm start" ile çalıştırıp http://localhost:3000 adresini kullanın.');
+        var isLocal = typeof window !== 'undefined' && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i.test((window.location && window.location.origin) || '');
+        throw new Error(isLocal
+          ? 'API yanıtı alınamadı. Sunucuyu "npm start" ile çalıştırıp http://localhost:3000 adresini kullanın.'
+          : 'API yanıtı alınamadı. Sunucunun çalıştığından ve doğru adreste yayınlandığından emin olun.');
       });
     }
     return res.json();

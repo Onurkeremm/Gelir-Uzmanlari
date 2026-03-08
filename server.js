@@ -201,7 +201,7 @@ app.use(function (req, res, next) {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.quilljs.com https://cdn.jsdelivr.net; " +
     "font-src 'self' https://fonts.gstatic.com; " +
     "img-src 'self' data: https: blob:; " +
-    "connect-src 'self' https://www.google.com; " +
+    "connect-src 'self' https://www.google.com https://www.gstatic.com https://cdn.quilljs.com https://cdn.jsdelivr.net; " +
     "frame-src 'self' https://www.google.com https://www.recaptcha.net;"
   );
   next();
@@ -1274,6 +1274,14 @@ app.put('/api/admin/sosyal', requireAuth, requireAdmin, async (req, res) => {
 });
 
 // ----- Sayfalar -----
+// favicon 404 hatasını önle (tarayıcı otomatik ister)
+app.get('/favicon.ico', (req, res) => {
+  const faviconPath = path.join(__dirname, 'public', 'favicon.ico');
+  require('fs').access(faviconPath, (err) => {
+    if (!err) return res.sendFile(faviconPath);
+    res.status(204).end();
+  });
+});
 // Ana sayfa: kök index.html (klasör kökünden veya domain'den çalışır)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
