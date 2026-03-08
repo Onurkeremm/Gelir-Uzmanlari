@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
 const bcrypt = require('bcrypt');
-const session = require('express-session');
+const cookieSession = require('cookie-session');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const cors = require('cors');
@@ -12,6 +12,8 @@ const xss = require('xss');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+// Render vb. proxy arkasında HTTPS ve doğru cookie için
+app.set('trust proxy', 1);
 const DATA_DIR = path.join(__dirname, 'data');
 const LOGS_DIR = path.join(DATA_DIR, 'logs');
 const UPLOADS_DIR = path.join(__dirname, 'public', 'uploads');
@@ -226,17 +228,15 @@ const loginLimiter = rateLimit({
   keyGenerator: (req) => getClientIp(req),
 });
 
+// Oturum cookie'de saklanır (Render restart sonrası kaybolmaz)
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET || 'cms-secret-key-degistirin',
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      secure: isProduction,
-      sameSite: isProduction ? 'strict' : 'lax',
-      maxAge: SESSION_TIMEOUT_MS,
-    },
+  cookieSession({
+    name: 'session',
+    keys: [process.env.SESSION_SECRET || 'cms-secret-key-degistirin'],
+    maxAge: SESSION_TIMEOUT_MS,
+    secure: isProduction,
+    httpOnly: true,
+    sameSite: isProduction ? 'lax' : 'lax',
   })
 );
 
@@ -266,9 +266,9 @@ function requireAuth(req, res, next) {
   if (!req.session || !req.session.userId) {
     return res.status(401).json({ error: 'Oturum açmanız gerekiyor.' });
   }
-  const lastActivity = req.session.lastActivity || req.session.cookie?.originalMaxAge ? Date.now() - (SESSION_TIMEOUT_MS - req.session.cookie.maxAge) : 0;
+  const lastActivity = req.session.lastActivity || Date.now();
   if (Date.now() - lastActivity > SESSION_TIMEOUT_MS) {
-    req.session.destroy(() => {});
+    req.session = null;
     return res.status(401).json({ error: 'Oturum süresi doldu. Tekrar giriş yapın.' });
   }
   req.session.lastActivity = Date.now();
@@ -596,16 +596,13 @@ app.post('/api/admin/login', loginLimiter, async (req, res) => {
 });
 
 app.get('/api/admin/logout', (req, res) => {
-  req.session.destroy(() => {});
+  req.session = null;
   res.json({ success: true });
 });
 
 app.post('/api/admin/extend-session', requireAuth, (req, res) => {
   req.session.lastActivity = Date.now();
-  req.session.save((err) => {
-    if (err) return res.status(500).json({ error: 'Oturum yenilenemedi.' });
-    res.json({ success: true, expiresIn: SESSION_TIMEOUT_MS });
-  });
+  res.json({ success: true, expiresIn: SESSION_TIMEOUT_MS });
 });
 
 app.get('/api/admin/session-info', requireAuth, (req, res) => {
