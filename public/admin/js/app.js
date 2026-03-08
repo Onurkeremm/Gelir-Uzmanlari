@@ -277,13 +277,14 @@
   function loadSection(section) {
     currentSection = section;
     editingId = null;
-    if (currentUser.rol === 'editor' && ['iletisim', 'sosyal', 'kullanicilar', 'guvenlik-loglari'].indexOf(section) !== -1) {
+    if (currentUser.rol === 'editor' && ['anasayfa', 'iletisim', 'sosyal', 'kullanicilar', 'guvenlik-loglari'].indexOf(section) !== -1) {
       section = 'haberler';
     }
     if (section === 'slider') loadSliderList();
     else if (section === 'hizmetler') loadHizmetlerList();
     else if (section === 'haberler') loadHaberlerList();
     else if (section === 'referanslar') loadReferanslarList();
+    else if (section === 'anasayfa') loadAnasayfaForm();
     else if (section === 'iletisim') loadIletisimForm();
     else if (section === 'sosyal') loadSosyalForm();
     else if (section === 'kullanicilar') loadKullanicilarList();
@@ -841,6 +842,39 @@
         if (r.ok) { toast('Kaydedildi.'); loadReferanslarList(); } else return safeJson(r).then(function (d) { throw new Error(d.error); });
       }).catch(function (err) { toast(err.message, 'error'); });
     });
+  }
+
+  // ---------- Anasayfa metni (hero) ----------
+  function loadAnasayfaForm() {
+    fetchApi(API + '/anasayfa')
+      .then(function (r) {
+        if (!r.ok) return r.json().then(function (d) { throw new Error(d.error || 'Anasayfa metni yüklenemedi.'); });
+        return safeJson(r);
+      })
+      .then(function (data) {
+        data = data || {};
+        var html = '<div class="max-w-2xl"><h3 class="text-xl font-bold text-gray-800 mb-4">Anasayfa Metni</h3>';
+        html += '<p class="text-sm text-gray-600 mb-4">Anasayfadaki hero bölümündeki başlık ve açıklama metnini buradan güncelleyebilirsiniz.</p>';
+        html += '<form id="form-anasayfa" class="space-y-4 bg-white p-6 rounded-xl border">';
+        html += '<div><label class="block text-sm font-medium text-gray-700 mb-1">Başlık</label><input type="text" id="anasayfa-heroBaslik" class="w-full px-3 py-2 border rounded-lg" value="' + escapeHtml(data.heroBaslik || '') + '" placeholder="Resmi Duyurular ve Güncel Haberler"></div>';
+        html += '<div><label class="block text-sm font-medium text-gray-700 mb-1">Açıklama</label><textarea id="anasayfa-heroAciklama" class="w-full px-3 py-2 border rounded-lg" rows="3" placeholder="KPSS, ALES, atamalar ve mevzuat haberlerine tek adresten ulaşın.">' + escapeHtml(data.heroAciklama || '') + '</textarea></div>';
+        html += '<div class="flex gap-2"><button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Kaydet</button></div></form></div>';
+        renderList(html);
+        document.getElementById('form-anasayfa').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var body = {
+            heroBaslik: document.getElementById('anasayfa-heroBaslik').value.trim(),
+            heroAciklama: document.getElementById('anasayfa-heroAciklama').value.trim(),
+          };
+          fetchApi(API + '/anasayfa', { method: 'PUT', body: body }).then(function (r) {
+            if (r.ok) { toast('Kaydedildi.'); } else return safeJson(r).then(function (d) { throw new Error(d.error); });
+          }).catch(function (err) { toast(err.message, 'error'); });
+        });
+      })
+      .catch(function (err) {
+        renderList('<div class="p-6 rounded-xl border bg-red-50 text-red-700">' + escapeHtml(err.message) + '</div>');
+        toast(err.message, 'error');
+      });
   }
 
   // ---------- İletişim ----------

@@ -28,6 +28,7 @@ const DATA_FILES = {
   referanslar: path.join(DATA_DIR, 'referanslar.json'),
   iletisim: path.join(DATA_DIR, 'iletisim.json'),
   sosyal: path.join(DATA_DIR, 'sosyal.json'),
+  anasayfa: path.join(DATA_DIR, 'anasayfa.json'),
   authLog: path.join(LOGS_DIR, 'auth.json'),
   auditLog: path.join(LOGS_DIR, 'audit.json'),
   resetTokens: path.join(DATA_DIR, 'reset-tokens.json'),
@@ -457,6 +458,21 @@ app.get('/api/sosyal', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.json({});
+  }
+});
+
+app.get('/api/anasayfa', async (req, res) => {
+  try {
+    let data = await readJson(DATA_FILES.anasayfa);
+    if (!data || typeof data !== 'object') data = {};
+    res.setHeader('Cache-Control', 'no-store');
+    res.json({
+      heroBaslik: data.heroBaslik || 'Resmi Duyurular ve Güncel Haberler',
+      heroAciklama: data.heroAciklama || 'KPSS, ALES, atamalar ve mevzuat haberlerine tek adresten ulaşın.',
+    });
+  } catch (err) {
+    console.error(err);
+    res.json({ heroBaslik: 'Resmi Duyurular ve Güncel Haberler', heroAciklama: 'KPSS, ALES, atamalar ve mevzuat haberlerine tek adresten ulaşın.' });
   }
 });
 
@@ -1265,6 +1281,34 @@ app.put('/api/admin/sosyal', requireAuth, requireAdmin, async (req, res) => {
   try {
     const data = req.body || {};
     await writeJson(DATA_FILES.sosyal, data);
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Güncellenemedi.' });
+  }
+});
+
+// ----- Admin: Anasayfa metni (hero başlık / açıklama) -----
+app.get('/api/admin/anasayfa', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    let data = await readJson(DATA_FILES.anasayfa);
+    if (!data || typeof data !== 'object') data = {};
+    res.json({
+      heroBaslik: data.heroBaslik || 'Resmi Duyurular ve Güncel Haberler',
+      heroAciklama: data.heroAciklama || 'KPSS, ALES, atamalar ve mevzuat haberlerine tek adresten ulaşın.',
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Yüklenemedi.' });
+  }
+});
+
+app.put('/api/admin/anasayfa', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    const body = req.body || {};
+    const data = {
+      heroBaslik: String(body.heroBaslik || '').trim() || 'Resmi Duyurular ve Güncel Haberler',
+      heroAciklama: String(body.heroAciklama || '').trim() || 'KPSS, ALES, atamalar ve mevzuat haberlerine tek adresten ulaşın.',
+    };
+    await writeJson(DATA_FILES.anasayfa, data);
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: 'Güncellenemedi.' });

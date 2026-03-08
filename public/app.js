@@ -209,6 +209,18 @@
       });
   }
 
+  function loadHeroText() {
+    fetch(BASE + '/api/anasayfa', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (data) {
+        var elBaslik = document.getElementById('hero-baslik');
+        var elAciklama = document.getElementById('hero-aciklama');
+        if (elBaslik && data.heroBaslik) elBaslik.textContent = data.heroBaslik;
+        if (elAciklama && data.heroAciklama) elAciklama.textContent = data.heroAciklama;
+      })
+      .catch(function () {});
+  }
+
   function loadFooterInfo() {
     Promise.all([fetch(BASE + '/api/iletisim').then(function (r) { return safeJson(r); }), fetch(BASE + '/api/sosyal').then(function (r) { return safeJson(r); })])
       .then(function (arr) {
@@ -256,6 +268,7 @@
   }
 
   function init() {
+    loadHeroText();
     loadAlbums(false);
     loadTrending();
     loadSlider();
